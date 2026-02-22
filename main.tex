@@ -14,8 +14,14 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{booktabs}
 
-% --- bibliography ---
-\bibliographystyle{plain} % alebo alpha / unsrt
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{dms}{DMS}{Document Management System}
+\newacronym{erp}{ERP}{Enterprise Resource Planning}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{rbac}{RBAC}{Role-Based Access Control}
+
+\bibliographystyle{plain}
 
 \title{Analýza a návrh implementácie podnikového informačného systému (DMS) \\ v spoločnosti Smer HD, a.s.}
 \author{Juraj Suchán (xsuchan@paneurouni.com)}
@@ -41,6 +47,11 @@
 \input{06-benefits-risks}
 \input{07-conclusion}
 
+\clearpage
+\glsaddallunused
+\printglossary[type=\acronymtype,title={Zoznam skratiek}]
+
+\clearpage
 \bibliography{refs}
 
 \end{document}
