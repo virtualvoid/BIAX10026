@@ -32,7 +32,7 @@ jobs:
           makeglossaries main
 
           # 3) biblatex/biber
-          biber main
+          bibtex main
 
           # 4) dobeh referencií
           pdflatex -interaction=nonstopmode -file-line-error -synctex=1 main.tex
