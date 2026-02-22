@@ -1,0 +1,40 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+\def\input@path{{sections/}}
+\makeatother
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+
+% --- bibliography ---
+\bibliographystyle{plain} % alebo alpha / unsrt
+
+\title{Analýza a návrh implementácie podnikového informačného systému (DMS) \\ v spoločnosti Smer HD, a.s.}
+\author{Juraj Suchán (xsuchan@paneurouni.com)}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\input{00-introduction}
+\input{01-company-profile}
+\input{02-current-state}
+\input{03-requirements}
+\input{04-solution-design}
+\input{05-implementation-plan}
+\input{06-benefits-risks}
+\input{07-conclusion}
+
+\bibliography{refs}
+
+\end{document}
