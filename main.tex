@@ -14,7 +14,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{booktabs}
 
-\usepackage[acronym]{glossaries}
+\usepackage[acronym,nomain]{glossaries}
 \makeglossaries
 \newacronym{dms}{DMS}{Document Management System}
 \newacronym{erp}{ERP}{Enterprise Resource Planning}
@@ -52,6 +52,7 @@
 \printglossary[type=\acronymtype,title={Zoznam skratiek}]
 
 \clearpage
+\nocite{*}
 \bibliography{refs}
 
 \end{document}
