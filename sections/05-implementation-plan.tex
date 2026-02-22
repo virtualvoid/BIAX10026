@@ -1,3 +1,82 @@
-﻿\section{Implementation Plan}
+﻿\section{Implementačný plán}
 
-Yes.
+Implementácia \gls{dms} v spoločnosti Smer HD, a.s. musí prebiehať riadeným spôsobom tak, aby nedošlo k narušeniu prebiehajúcich projektov a výrobných procesov. 
+Navrhovaná implementácia je rozdelená do niekoľkých logických fáz, ktoré umožnia postupný prechod zo súčasného stavu na cieľové riešenie.
+
+\subsection*{Fáza 1 – Analýza a detailná špecifikácia}
+
+V úvodnej fáze je potrebné podrobne špecifikovať požiadavky jednotlivých oddelení a definovať presné pravidlá práce s dokumentáciou. Súčasťou tejto fázy je:
+
+\begin{itemize}
+    \item definovanie kategórií dokumentov,
+    \item návrh štruktúry metadát,
+    \item identifikácia schvaľovacích procesov,
+    \item návrh používateľských rolí a prístupových práv na princípe \gls{rbac}.
+\end{itemize}
+
+Táto fáza predstavuje základ pre úspešnú implementáciu a minimalizuje riziko neskorších úprav systému.
+
+\subsection*{Fáza 2 – Návrh a konfigurácia systému}
+
+Na základe analýzy sa pripraví konkrétny návrh konfigurácie systému. V tejto fáze sa realizujú najmä:
+
+\begin{itemize}
+    \item návrh dátového modelu systému,
+    \item implementácia základných workflow procesov,
+    \item definovanie štruktúry projektov a registratúrnych celkov,
+    \item prispôsobenie používateľského rozhrania potrebám firmy.
+\end{itemize}
+
+Cieľom tejto fázy je vytvoriť funkčný základ riešenia, ktorý bude reflektovať organizačné a procesné špecifiká podniku.
+
+\subsection*{Fáza 3 – Migrácia existujúcej dokumentácie}
+
+Jedným z kľúčových krokov je postupná migrácia existujúcej papierovej a digitálnej dokumentácie do nového systému. Tento proces zahŕňa:
+
+\begin{itemize}
+    \item digitalizáciu papierových dokumentov,
+    \item triedenie a kategorizáciu súborov,
+    \item kontrolu úplnosti a správnosti údajov,
+    \item testovanie vyhľadávania a prístupových práv.
+\end{itemize}
+
+Migrácia bude realizovaná postupne podľa jednotlivých projektov, aby sa minimalizovalo prevádzkové riziko a zabezpečila kontinuita činností podniku.
+
+\subsection*{Fáza 4 – Testovanie a pilotná prevádzka}
+
+Pred nasadením do ostrej prevádzky je potrebné systém otestovať v pilotnom režime. Pilotná prevádzka môže byť realizovaná na vybranom projekte alebo oddelení.
+
+Cieľom tejto fázy je:
+
+\begin{itemize}
+    \item overenie funkčnosti workflow procesov,
+    \item identifikácia používateľských problémov,
+    \item úprava nastavení systému na základe spätnej väzby.
+\end{itemize}
+
+Pilotná prevádzka umožní odhaliť potenciálne nedostatky ešte pred plošným nasadením riešenia.
+
+\subsection*{Fáza 5 – Ostrá prevádzka a školenie zamestnancov}
+
+Po úspešnom ukončení pilotnej fázy sa systém nasadí do plnej prevádzky. Súčasťou implementácie je školenie zamestnancov, ktoré zabezpečí správne používanie systému a zníži odpor voči zmene pracovných postupov.
+
+V tejto fáze sa zároveň nastaví proces pravidelnej podpory, údržby a aktualizácie systému.
+
+\subsection*{Časový rámec implementácie}
+
+Predpokladaná dĺžka implementácie je približne 4 až 6 mesiacov v závislosti od rozsahu migrácie dokumentácie, komplexnosti procesov a pripravenosti zamestnancov na zmenu pracovných postupov.
+
+\subsection*{Riziká implementácie}
+
+Implementácia systému môže byť sprevádzaná nasledovnými rizikami:
+
+\begin{itemize}
+    \item odpor zamestnancov voči zmene pracovných postupov,
+    \item podcenenie náročnosti migrácie dokumentov,
+    \item nedostatočné školenie používateľov,
+    \item dočasné spomalenie práce počas prechodného obdobia.
+\end{itemize}
+
+Tieto riziká možno minimalizovať postupným nasadzovaním systému, jasnou komunikáciou zmien, zapojením kľúčových pracovníkov do prípravnej fázy a dôsledným zaškolením používateľov.
+
+\clearpage

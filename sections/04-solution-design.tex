@@ -1,3 +1,27 @@
-﻿\section{Solution Design}
+﻿\subsection*{Architektúra systému}
 
-Yes.
+Navrhované riešenie \gls{dms} je koncipované ako viacvrstvová architektúra, ktorá oddeľuje jednotlivé logické časti systému a umožňuje ich nezávislý vývoj, údržbu a budúce rozširovanie. Architektúra je znázornená na Obrázku~\ref{fig:architecture}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/architecture.png}
+    \caption{Logická architektúra navrhovaného systému správy dokumentov}
+    \label{fig:architecture}
+\end{figure}
+
+Používateľ pristupuje k systému prostredníctvom webového rozhrania, ktoré je sprístupnené cez webový server zabezpečujúci komunikáciu prostredníctvom protokolu \gls{https}. 
+
+Prezentačná vrstva zabezpečuje používateľské rozhranie systému a umožňuje prácu s dokumentmi, zadávanie údajov a realizáciu schvaľovacích procesov.
+
+Aplikačná vrstva implementuje podnikové pravidlá, riadenie životného cyklu dokumentov, verzovanie a kontrolu prístupových práv na princípe \gls{rbac}. 
+Táto vrstva zabezpečuje spracovanie požiadaviek používateľa a komunikáciu s dátovou vrstvou.
+
+Perzistenčná vrstva slúži na uchovávanie štruktúrovaných údajov, ako sú metadáta dokumentov, informácie o projektoch, používateľoch a schvaľovacích procesoch. 
+Samotné súbory dokumentov sú ukladané do samostatného úložiska dokumentov, čím sa zabezpečuje oddelenie dátovej logiky od fyzického ukladania súborov.
+
+Asynchrónne spracovanie umožňuje realizáciu časovo náročných operácií, napríklad spracovanie workflow krokov alebo generovanie notifikácií, bez blokovania používateľského rozhrania. 
+Komunikácia medzi jednotlivými časťami systému môže byť podporená mechanizmom správ (message queue), čo zvyšuje škálovateľnosť a robustnosť riešenia.
+
+Navrhnutá architektúra poskytuje dostatočnú flexibilitu pre budúce rozšírenie systému a jeho integráciu s ďalšími podnikovými informačnými riešeniami v rámci \gls{pis}.
+
+\clearpage

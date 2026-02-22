@@ -1,3 +1,48 @@
-﻿\section{Requirements}
+﻿\section{Identifikácia požiadaviek na informačný systém}
 
-Yes.
+Na základe analýzy súčasného stavu boli identifikované požiadavky na implementáciu \gls{dms}, ktorý bude reflektovať špecifiká projektovo orientovaného výrobného podniku.
+
+Požiadavky možno rozdeliť do viacerých kategórií: funkčné, nefunkčné, bezpečnostné a integračné.
+
+\subsection*{Funkčné požiadavky}
+
+Funkčné požiadavky vyjadrujú, aké činnosti musí systém podporovať.
+
+Systém musí umožňovať centrálne evidovanie všetkých dokumentov vznikajúcich v rámci projektu. Každý dokument musí byť jednoznačne identifikovateľný, 
+zaraditeľný k príslušnému projektu a kategorizovaný podľa typu (technická dokumentácia, zmluva, certifikát a pod.).
+
+Súčasťou systému musí byť mechanizmus verzovania dokumentov, ktorý umožní sledovanie zmien a uchovávanie histórie úprav. Používateľ musí mať možnosť identifikovať aktuálnu platnú verziu dokumentu.
+
+Dôležitou funkciou je podpora schvaľovacích procesov prostredníctvom workflow mechanizmov \cite{dumas}. 
+Systém musí umožňovať definovanie schvaľovacích krokov, priraďovanie úloh konkrétnym používateľom a evidenciu rozhodnutí.
+
+Systém musí podporovať vyhľadávanie dokumentov podľa viacerých kritérií, napríklad podľa projektu, typu dokumentu, dátumu vytvorenia alebo zodpovednej osoby.
+
+\subsection*{Nefunkčné požiadavky}
+
+Nefunkčné požiadavky definujú kvalitatívne vlastnosti systému.
+
+Systém musí byť dostupný pre všetkých oprávnených používateľov prostredníctvom interného sieťového prostredia podniku. 
+Používateľské rozhranie musí byť intuitívne a zrozumiteľné aj pre technicky menej zdatných pracovníkov.
+
+Dôležitou požiadavkou je spoľahlivosť systému a zabezpečenie ochrany dát proti strate. Systém musí podporovať pravidelné zálohovanie a obnovu dát.
+
+Z pohľadu výkonu musí byť systém schopný pracovať s rozsiahlymi technickými súbormi bez výrazného spomalenia práce používateľov.
+
+\subsection*{Bezpečnostné požiadavky}
+
+Vzhľadom na citlivosť technickej a zmluvnej dokumentácie je nevyhnutné zabezpečiť riadenie prístupových práv na princípe \gls{rbac}. 
+Systém musí umožňovať definovanie používateľských rolí a obmedzenie prístupu k dokumentom podľa organizačnej štruktúry.
+
+Každá zmena dokumentu musí byť zaznamenaná v auditnej stope, ktorá umožní spätne identifikovať autora zmeny, čas úpravy a charakter vykonanej operácie.
+
+Systém musí zabezpečiť ochranu pred neoprávneným zásahom do dokumentácie a minimalizovať riziko úniku citlivých údajov.
+
+\subsection*{Integračné požiadavky}
+
+Hoci hlavnou oblasťou riešenia je správa dokumentov, systém by mal umožňovať budúcu integráciu s ďalšími podnikovými systémami, najmä s ekonomickým softvérom alebo \gls{erp} riešením.
+
+Integrácia by mala umožniť prepojenie dokumentov s konkrétnymi projektmi, zákazkami alebo fakturačnými dokladmi, čím sa zvýši prehľadnosť a efektivita riadenia podniku. 
+Takáto integrácia podporí komplexné fungovanie \gls{pis} v rámci organizácie.
+
+\clearpage
