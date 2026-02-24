@@ -1,82 +1,204 @@
 ﻿\section{Implementačný plán}
 
-Implementácia \gls{dms} v spoločnosti Smer HD, a.s. musí prebiehať riadeným spôsobom tak, aby nedošlo k narušeniu prebiehajúcich projektov a výrobných procesov. 
-Navrhovaná implementácia je rozdelená do niekoľkých logických fáz, ktoré umožnia postupný prechod zo súčasného stavu na cieľové riešenie.
+Implementácia \gls{dms} v spoločnosti Smer HD, a.s. je koncipovaná ako samostatný projekt 
+s jasne definovaným rozsahom, harmonogramom, zodpovednosťami a kontrolnými bodmi. 
+Projekt je riadený fázovým modelom implementácie s postupným prechodom od analýzy 
+k pilotnej a následne ostrej prevádzke.
 
-\subsection*{Fáza 1 – Analýza a detailná špecifikácia}
+Cieľom implementácie je minimalizovať prevádzkové riziko, zabezpečiť kontrolovaný prechod 
+zo súčasného stavu (AS-IS) do cieľového modelu (TO-BE) a dosiahnuť merateľné zlepšenie 
+efektivity správy dokumentácie.
 
-V úvodnej fáze je potrebné podrobne špecifikovať požiadavky jednotlivých oddelení a definovať presné pravidlá práce s dokumentáciou. Súčasťou tejto fázy je:
+\subsection*{Projektová štruktúra a riadenie}
+
+Projekt bude riadený interným projektovým manažérom za podpory IT špecialistu 
+a zástupcov jednotlivých oddelení. Organizačné rozdelenie rolí:
+
+\begin{itemize}
+    \item \textbf{Projektový manažér} – zodpovedný za harmonogram, rozpočet, riadenie rizík a komunikáciu.
+    \item \textbf{IT špecialista} – technická implementácia, konfigurácia a správa infraštruktúry.
+    \item \textbf{Zástupcovia oddelení} – definovanie procesných požiadaviek a testovanie.
+    \item \textbf{Externý dodávateľ / konzultant} – metodická a technická podpora.
+\end{itemize}
+
+Riadenie projektu zahŕňa pravidelné kontrolné stretnutia (min. 1× mesačne), 
+vyhodnocovanie míľnikov a priebežné riadenie identifikovaných rizík.
+
+\subsection*{Fáza 1 – Analýza a detailná špecifikácia (1. mesiac)}
+
+Cieľom fázy je detailné rozpracovanie funkčných a bezpečnostných požiadaviek.
 
 \begin{itemize}
     \item definovanie kategórií dokumentov,
     \item návrh štruktúry metadát,
-    \item identifikácia schvaľovacích procesov,
-    \item návrh používateľských rolí a prístupových práv na princípe \gls{rbac}.
+    \item modelovanie workflow procesov,
+    \item návrh rolí a oprávnení (\gls{rbac}),
+    \item definovanie KPI a cieľových metrík.
 \end{itemize}
 
-Táto fáza predstavuje základ pre úspešnú implementáciu a minimalizuje riziko neskorších úprav systému.
+\textbf{Milestone M1:} Schválená špecifikácia riešenia.
 
-\subsection*{Fáza 2 – Návrh a konfigurácia systému}
+\subsection*{Fáza 2 – Návrh a konfigurácia systému (2.–3. mesiac)}
 
-Na základe analýzy sa pripraví konkrétny návrh konfigurácie systému. V tejto fáze sa realizujú najmä:
+Fáza zahŕňa implementáciu architektonického návrhu a konfiguráciu systému.
 
 \begin{itemize}
-    \item návrh dátového modelu systému,
-    \item implementácia základných workflow procesov,
-    \item definovanie štruktúry projektov a registratúrnych celkov,
-    \item prispôsobenie používateľského rozhrania potrebám firmy.
+    \item konfigurácia dátového modelu,
+    \item implementácia workflow mechanizmov,
+    \item nastavenie prístupových práv,
+    \item vytvorenie testovacieho prostredia,
+    \item funkčné a integračné testovanie.
 \end{itemize}
 
-Cieľom tejto fázy je vytvoriť funkčný základ riešenia, ktorý bude reflektovať organizačné a procesné špecifiká podniku.
+\textbf{Milestone M2:} Funkčný prototyp pripravený na pilotnú prevádzku.
 
-\subsection*{Fáza 3 – Migrácia existujúcej dokumentácie}
+\subsection*{Fáza 3 – Migrácia dokumentácie (3.–4. mesiac)}
 
-Jedným z kľúčových krokov je postupná migrácia existujúcej papierovej a digitálnej dokumentácie do nového systému. Tento proces zahŕňa:
+Migrácia predstavuje kritickú časť implementácie.
 
 \begin{itemize}
-    \item digitalizáciu papierových dokumentov,
-    \item triedenie a kategorizáciu súborov,
-    \item kontrolu úplnosti a správnosti údajov,
-    \item testovanie vyhľadávania a prístupových práv.
+    \item digitalizácia papierových dokumentov,
+    \item čistenie a konsolidácia dát,
+    \item import dokumentov do systému,
+    \item kontrola integrity údajov.
 \end{itemize}
 
-Migrácia bude realizovaná postupne podľa jednotlivých projektov, aby sa minimalizovalo prevádzkové riziko a zabezpečila kontinuita činností podniku.
+Migrácia bude realizovaná postupne podľa projektov, 
+aby nedošlo k prerušeniu výrobných procesov.
 
-\subsection*{Fáza 4 – Testovanie a pilotná prevádzka}
+\textbf{Milestone M3:} Úspešne migrovaná pilotná dokumentácia.
 
-Pred nasadením do ostrej prevádzky je potrebné systém otestovať v pilotnom režime. Pilotná prevádzka môže byť realizovaná na vybranom projekte alebo oddelení.
-
-Cieľom tejto fázy je:
+\subsection*{Fáza 4 – Pilotná prevádzka (5. mesiac)}
 
 \begin{itemize}
-    \item overenie funkčnosti workflow procesov,
-    \item identifikácia používateľských problémov,
-    \item úprava nastavení systému na základe spätnej väzby.
+    \item overenie workflow procesov,
+    \item testovanie bezpečnostných mechanizmov,
+    \item zber spätnej väzby používateľov,
+    \item optimalizácia konfigurácie.
 \end{itemize}
 
-Pilotná prevádzka umožní odhaliť potenciálne nedostatky ešte pred plošným nasadením riešenia.
+\textbf{Milestone M4:} Schválenie systému pre ostrú prevádzku.
 
-\subsection*{Fáza 5 – Ostrá prevádzka a školenie zamestnancov}
+\subsection*{Fáza 5 – Ostrá prevádzka a stabilizácia (6. mesiac)}
 
-Po úspešnom ukončení pilotnej fázy sa systém nasadí do plnej prevádzky. Súčasťou implementácie je školenie zamestnancov, ktoré zabezpečí správne používanie systému a zníži odpor voči zmene pracovných postupov.
+\begin{itemize}
+    \item plošné nasadenie systému,
+    \item školenie zamestnancov,
+    \item monitoring výkonu a riešenie incidentov,
+    \item vyhodnotenie KPI.
+\end{itemize}
 
-V tejto fáze sa zároveň nastaví proces pravidelnej podpory, údržby a aktualizácie systému.
+\textbf{Milestone M5:} Stabilizovaný systém v plnej prevádzke.
 
-\subsection*{Časový rámec implementácie}
+\subsection*{Odhad nákladov}
 
-Predpokladaná dĺžka implementácie je približne 4 až 6 mesiacov v závislosti od rozsahu migrácie dokumentácie, komplexnosti procesov a pripravenosti zamestnancov na zmenu pracovných postupov.
+Implementácia predstavuje kapitálovú investíciu (CAPEX) 
+s následnými prevádzkovými nákladmi (OPEX).
+
+\textbf{Odhad CAPEX:}
+\begin{itemize}
+    \item softvérové licencie / vývoj: 20 000 – 30 000 €,
+    \item infraštruktúra a zálohovanie: 5 000 – 10 000 €,
+    \item migrácia dát: 5 000 €,
+    \item školenia: 3 000 – 5 000 €.
+\end{itemize}
+
+Celkový investičný rámec: 35 000 – 50 000 €.
 
 \subsection*{Riziká implementácie}
 
-Implementácia systému môže byť sprevádzaná nasledovnými rizikami:
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{L{7.2cm} C{3.0cm} C{3.0cm}}
+\toprule
+\textbf{Riziko} & \textbf{Pravdepodobnosť} & \textbf{Dopad} \\
+\midrule
+Odpor zamestnancov & Stredná & Stredný \\
+Podcenenie migrácie dát & Stredná & Vysoký \\
+Časový sklz projektu & Nízka & Stredný \\
+Dočasné zníženie produktivity & Vysoká & Stredný \\
+\bottomrule
+\end{tabularx}
+\caption{Riziká implementácie}
+\end{table}
+
+Riziká budú riadené prostredníctvom priebežného monitorovania, 
+zapojenia kľúčových pracovníkov a postupného nasadzovania riešenia.
+
+\subsection*{Kritériá úspešnosti (KPI)}
+
+Úspešnosť implementácie bude hodnotená pomocou nasledovných metrík:
 
 \begin{itemize}
-    \item odpor zamestnancov voči zmene pracovných postupov,
-    \item podcenenie náročnosti migrácie dokumentov,
-    \item nedostatočné školenie používateľov,
-    \item dočasné spomalenie práce počas prechodného obdobia.
+    \item skrátenie času vyhľadania dokumentu minimálne o 50 \%,
+    \item zníženie manuálneho schvaľovania o minimálne 60 \%,
+    \item 100 \% auditovateľnosť zmien,
+    \item spokojnosť používateľov vyššia ako 80 \% (interný dotazník).
 \end{itemize}
 
-Tieto riziká možno minimalizovať postupným nasadzovaním systému, jasnou komunikáciou zmien, zapojením kľúčových pracovníkov do prípravnej fázy a dôsledným zaškolením používateľov.
+\subsection*{Harmonogram implementácie}
+
+Celková predpokladaná dĺžka implementácie je 6 mesiacov.
+
+\begin{landscape}
+\begin{figure}[ht]
+\centering
+\small
+
+\ganttset{
+  x unit=2.0cm,
+  y unit chart=0.60cm,
+  title height=1,
+  title label font={\bfseries\footnotesize},
+  hgrid,
+  vgrid,
+  hgrid style/.style={draw=black!25, line width=0.2pt},
+  vgrid style/.style={draw=black!25, line width=0.2pt},
+  bar height=0.55,
+  group height=0.70,
+  milestone height=0.55,
+  group peaks width=0.05,
+  group left shift=0,
+  group right shift=0,
+  bar label font={\footnotesize},
+  group label font={\bfseries\footnotesize},
+  milestone label font={\footnotesize},
+  bar/.append style={draw=black, line width=0.6pt, fill=black!15, sharp corners},
+  group/.append style={draw=black, line width=0.6pt, fill=black!35, sharp corners},
+  milestone/.append style={draw=black, line width=0.6pt, fill=black, sharp corners}
+}
+\typeout{GANTTSET DONE}
+
+\begin{ganttchart}{1}{6}
+
+\gantttitle{Harmonogram implementácie DMS (mesiace)}{6} \\
+\gantttitlelist{1,...,6}{1} \\
+
+\ganttgroup{Fáza 1 – Analýza a špecifikácia}{1}{1} \\
+\ganttbar{Špecifikácia požiadaviek a pravidiel}{1}{1} \\
+
+\ganttgroup{Fáza 2 – Návrh a konfigurácia}{2}{3} \\
+\ganttbar{Konfigurácia dátového modelu}{2}{3} \\
+\ganttbar{Nastavenie workflow a RBAC}{2}{3} \\
+
+\ganttgroup{Fáza 3 – Migrácia dokumentácie}{3}{4} \\
+\ganttbar{Digitalizácia a triedenie dokumentov}{3}{4} \\
+\ganttbar{Import a kontrola integrity dát}{3}{4} \\
+
+\ganttgroup{Fáza 4 – Pilotná prevádzka}{5}{5} \\
+\ganttbar{Pilot + spätná väzba}{5}{5} \\
+
+\ganttgroup{Fáza 5 – Ostrá prevádzka a stabilizácia}{6}{6} \\
+\ganttbar{Nasadenie, školenia, stabilizácia}{6}{6} \\
+
+\ganttmilestone{M1 – Schválenie špecifikácie}{1} \\
+\ganttmilestone{M2 – Funkčný prototyp}{3} \\
+\ganttmilestone{M3 – Go-live}{6}
+
+\end{ganttchart}
+
+\caption{Ganttov diagram implementácie DMS}
+\end{figure}
+\end{landscape}
 
 \clearpage

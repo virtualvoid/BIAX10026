@@ -4,18 +4,49 @@
 \def\input@path{{sections/}}
 \makeatother
 
+% --- Encoding and language ---
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[slovak]{babel}
 
+% --- Layout ---
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{graphicx}
-\usepackage{xurl}
-\usepackage[hidelinks]{hyperref}
-\usepackage{booktabs}
 
-\usepackage[acronym,nomain]{glossaries}
+% --- Graphics and tables ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{pgfgantt}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+
+\setlength{\tabcolsep}{7pt}      
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\usepackage{tikz}
+\tikzset{
+  every picture/.style={
+    line cap=rect,
+    line join=miter
+  }
+}
+
+% --- Typography ---
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- URL handling ---
+\usepackage{xurl}
+
+% --- Glossaries ---
+\usepackage[acronym,nomain,toc]{glossaries}
+\renewcommand*{\glossaryname}{Zoznam skratiek}
+\renewcommand*{\acronymname}{Zoznam skratiek}
 \makeglossaries
+
 \newacronym{pis}{PIS}{Podnikový informačný systém}
 \newacronym{erp}{ERP}{Enterprise Resource Planning}
 \newacronym{crm}{CRM}{Customer Relationship Management}
@@ -23,36 +54,39 @@
 \newacronym{dms}{DMS}{Document Management System}
 \newacronym{ecm}{ECM}{Enterprise Content Management}
 \newacronym{rbac}{RBAC}{Role-Based Access Control}
-\newacronym{api}{API}{Application Programming Interface}
 \newacronym{https}{HTTPS}{Hypertext Transfer Protocol Secure}
 \newacronym{cad}{CAD}{Computer-Aided Design}
 
+% --- Hyperref MUST be last ---
+\usepackage[hidelinks]{hyperref}
+
+% --- Bibliography ---
 \bibliographystyle{plain}
 
-\title{Analýza a návrh implementácie podnikového informačného systému (DMS) \\ v spoločnosti Smer HD, a.s.}
+% --- Title ---
+\title{Analýza a návrh implementácie podnikového informačného systému (DMS) \\ 
+v spoločnosti Smer HD, a.s.}
 \author{Juraj Suchán (xsuchan@paneurouni.com)}
 \date{\today}
 
-\pagenumbering{arabic}
-
 \begin{document}
-\maketitle
 
+\maketitle
 \thispagestyle{empty}
 \clearpage
 
 \tableofcontents
 \clearpage
 
-\input{introduction}                % 1
-\input{theoretical-background}      % 2
-\input{company-profile}             % 3
-\input{current-state}               % 4
-\input{requirements}                % 5
-\input{solution-design}             % 6
-\input{implementation-plan}         % 7
-\input{benefits-risks}              % 8
-\input{conclusion}                  % 9
+\input{introduction}                    % 1
+\input{theoretical-background}          % 2
+\input{company-profile}                 % 3
+\input{current-state}                   % 4
+\input{requirements}                    % 5       
+\input{solution-design}                 % 6
+\input{implementation-plan}             % 7
+\input{benefits-risks}                  % 8
+\input{conclusion}                      % 9
 
 \clearpage
 \glsaddallunused

@@ -1,39 +1,179 @@
-﻿\section{Očakávané prínosy implementácie}
+﻿\section{Prínosy a riziká implementácie DMS}
 
-Implementácia \gls{dms} v spoločnosti Smer HD, a.s. nepredstavuje iba technologickú zmenu, ale zásah do spôsobu riadenia informácií v podniku. 
-Zavedenie centralizovaného systému správy dokumentov môže mať významný dopad na efektivitu, bezpečnosť a transparentnosť procesov.
+Implementácia systému správy dokumentov predstavuje významnú organizačnú aj technologickú zmenu. 
+V tejto kapitole sú systematicky analyzované očakávané prínosy navrhovaného riešenia 
+a zároveň identifikované riziká spojené s jeho implementáciou a prevádzkou. 
+Analýza vychádza z požiadaviek definovaných v predchádzajúcich kapitolách, 
+z navrhnutej architektúry riešenia a z implementačného plánu.
 
-\subsection*{Zvýšenie efektivity práce}
+\subsection*{Operatívne prínosy}
 
-Centralizovaná evidencia dokumentov a možnosť ich rýchleho vyhľadávania povedie k zníženiu času potrebného na administratívne úkony. 
-Zamestnanci nebudú odkázaní na manuálne prehľadávanie priečinkov alebo papierových archívov, čím sa zníži časová náročnosť práce s dokumentáciou.
+Operatívne prínosy sa prejavujú najmä v každodennej práci zamestnancov.
 
-Automatizácia schvaľovacích procesov prostredníctvom workflow mechanizmov \cite{dumas} zároveň obmedzí potrebu neformálnej e-mailovej komunikácie a zvýši prehľadnosť rozhodovacích procesov.
+\begin{itemize}
+    \item \textbf{Skrátenie času vyhľadávania dokumentov} – implementácia centrálnej evidencie (F1) 
+    a viac-kriteriálneho vyhľadávania (F4) eliminuje časové straty spôsobené decentralizovaným ukladaním dokumentov.
+    
+    \item \textbf{Eliminácia neaktuálnych verzií dokumentov} – riadené verzovanie (F2) 
+    a jednoznačné označenie platnej verzie minimalizuje riziko použitia zastaraných technických výkresov.
+    
+    \item \textbf{Zrýchlenie schvaľovacích procesov} – workflow mechanizmus (F3) 
+    nahrádza neformálnu e-mailovú komunikáciu a skracuje čas medzi vytvorením a schválením dokumentu.
+    
+    \item \textbf{Zvýšenie transparentnosti procesov} – auditná stopa (B2) 
+    umožňuje dohľadateľnosť zmien a zodpovedností.
+\end{itemize}
 
-\subsection*{Zníženie prevádzkových a právnych rizík}
+Na základe analýzy súčasného stavu možno predpokladať, že čas vyhľadávania dokumentov 
+sa zníži minimálne o 50 \%, čo predstavuje významnú úsporu pracovného času.
 
-Presné verzovanie dokumentov a existencia auditnej stopy výrazne znižujú riziko použitia neaktuálnych technických podkladov vo výrobe. 
-V prípade kontroly alebo sporu so zákazníkom bude podnik schopný jednoznačne preukázať históriu zmien dokumentácie.
+\subsection*{Ekonomické prínosy}
 
-Digitalizácia archívu zároveň minimalizuje riziko straty alebo poškodenia papierových dokumentov a podporuje dlhodobú archiváciu údajov.
+Ekonomické prínosy sú spojené so zvýšenou efektivitou práce 
+a so znížením rizík vyplývajúcich z nesprávnej alebo neúplnej dokumentácie.
 
-\subsection*{Zlepšenie riadenia projektov}
+Pri predpoklade, že 10 zamestnancov ušetrí v priemere 30 minút denne, 
+ročná úspora pracovného času predstavuje:
 
-Prepojenie dokumentácie s konkrétnymi projektmi umožní lepšiu kontrolu nad priebehom realizácie zákaziek. Projektoví manažéri získajú okamžitý prehľad o stave schvaľovania dokumentov a dostupnosti technických podkladov.
+\[
+10 \times 0{,}5 \times 220 = 1100 \text{ hodín ročne}
+\]
 
-Transparentnejší tok informácií medzi oddeleniami prispeje k zníženiu chýb spôsobených nedostatočnou komunikáciou a zvýši koordináciu medzi jednotlivými útvarmi.
+Pri priemernej hodinovej nákladovej cene 20 EUR ide o potenciálnu úsporu:
 
-\subsection*{Strategický rozvoj a digitalizácia podniku}
+\[
+1100 \times 20 = 22\,000 \text{ EUR ročne}
+\]
 
-Zavedenie \gls{dms} predstavuje krok smerom k systematickej digitalizácii podniku a posilneniu jeho informačnej infraštruktúry. 
-Vytvorením jednotnej informačnej základne sa vytvára priestor pre budúcu integráciu s ďalšími podnikovými systémami, napríklad s ekonomickým softvérom alebo \gls{erp} riešením.
+Okrem priamej úspory času možno očakávať:
 
-Dlhodobým prínosom môže byť vytvorenie digitálnej znalostnej databázy projektov, ktorá umožní efektívnejšie využívanie skúseností z minulých realizácií. 
-Takýto prístup podporuje inovačný potenciál podniku a zvyšuje jeho konkurencieschopnosť na trhu.
+\begin{itemize}
+    \item zníženie rizika finančných strát spôsobených výrobnými chybami,
+    \item zníženie nákladov na riešenie sporov,
+    \item zníženie administratívnej záťaže.
+\end{itemize}
 
-\subsection*{Celkové zhodnotenie prínosov}
+V strednodobom horizonte (2–3 roky) možno očakávať, 
+že prínosy kompenzujú počiatočné investičné náklady na implementáciu systému.
 
-Implementácia systému správy dokumentov predstavuje investíciu do organizačnej stability, informačnej bezpečnosti a systematického riadenia znalostí v podniku. 
-Hoci zavedenie systému vyžaduje počiatočné náklady a adaptáciu zamestnancov, očakávané prínosy v oblasti efektivity, transparentnosti a riadenia rizík prevyšujú tieto náklady v strednodobom horizonte.
+\subsection*{Strategické prínosy}
+
+Strategické prínosy presahujú rámec každodennej operatívy.
+
+\begin{itemize}
+    \item \textbf{Podpora digitálnej transformácie} – DMS vytvára základ pre ďalšiu integráciu s \gls{erp} a inými systémami (I1, I2).
+    
+    \item \textbf{Zvýšenie konkurencieschopnosti} – efektívnejšie riadenie dokumentácie skracuje projektové cykly.
+    
+    \item \textbf{Zvýšenie dôveryhodnosti} – auditovateľnosť procesov zvyšuje dôveru obchodných partnerov a regulačných orgánov.
+    
+    \item \textbf{Zníženie závislosti od jednotlivcov} – centralizovaný systém redukuje riziko „know-how bottlenecku“.
+\end{itemize}
+
+Z dlhodobého hľadiska môže implementácia DMS predstavovať základný stavebný prvok 
+komplexného podnikového informačného systému.
+
+\subsection*{Kvantifikovateľné ukazovatele úspešnosti}
+
+Pre objektívne vyhodnotenie prínosov je potrebné definovať merateľné ukazovatele (KPI):
+
+\begin{itemize}
+    \item priemerný čas vyhľadania dokumentu,
+    \item počet incidentov spôsobených neaktuálnou dokumentáciou,
+    \item priemerná dĺžka schvaľovacieho procesu,
+    \item počet auditných záznamov a identifikovaných nezrovnalostí,
+    \item spokojnosť používateľov po 3 a 6 mesiacoch prevádzky.
+\end{itemize}
+
+Monitorovanie týchto ukazovateľov umožní objektívne posúdiť úspešnosť implementácie.
+
+\subsection*{Riziká implementácie}
+
+Implementácia DMS prináša viaceré typy rizík, ktoré možno rozdeliť do štyroch kategórií: 
+projektové, technické, organizačné a bezpečnostné.
+
+\subsubsection*{Projektové riziká}
+
+\begin{itemize}
+    \item časový sklz implementácie,
+    \item podcenenie rozsahu migrácie dát,
+    \item prekročenie rozpočtu.
+\end{itemize}
+
+Mitigácia spočíva v dôslednom riadení projektu, 
+jasne definovaných míľnikoch a pravidelnom monitorovaní plnenia harmonogramu.
+
+\subsubsection*{Technické riziká}
+
+\begin{itemize}
+    \item problémy s integráciou do existujúcej infraštruktúry,
+    \item výkonnostné obmedzenia pri práci s veľkými súbormi,
+    \item zlyhanie zálohovania alebo obnovy dát.
+\end{itemize}
+
+Tieto riziká sú minimalizované architektonickým návrhom 
+oddelenia aplikačnej a perzistenčnej vrstvy a implementáciou zálohovacích mechanizmov (N2).
+
+\subsubsection*{Organizačné riziká}
+
+\begin{itemize}
+    \item odpor zamestnancov voči zmene,
+    \item nedostatočné školenie používateľov,
+    \item nesprávne definované role a prístupové práva.
+\end{itemize}
+
+Riešením je zapojenie používateľov do pilotnej fázy, 
+školenia a postupné zavádzanie systému.
+
+\subsubsection*{Bezpečnostné riziká}
+
+\begin{itemize}
+    \item neoprávnený prístup k citlivým dokumentom,
+    \item únik údajov,
+    \item zneužitie oprávnení.
+\end{itemize}
+
+Tieto riziká sú mitigované implementáciou \gls{rbac} (B1), 
+šifrovanou komunikáciou a auditnou stopou (B2).
+
+\subsection*{Rozšírená riziková matica}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{L{6.0cm} C{2.6cm} C{2.4cm} C{3.0cm}}
+\toprule
+\textbf{Riziko} & \textbf{Pravdepodobnosť} & \textbf{Dopad} & \textbf{Úroveň rizika} \\
+\midrule
+Časový sklz projektu & Stredná & Stredný & Stredné \\
+Podcenenie migrácie dát & Stredná & Vysoký & Vysoké \\
+Odpor zamestnancov & Stredná & Stredný & Stredné \\
+Použitie neaktuálnej verzie po migrácii & Nízka & Vysoký & Stredné \\
+Bezpečnostný incident & Nízka & Vysoký & Stredné \\
+\bottomrule
+\end{tabularx}
+\caption{Riziková matica implementácie DMS}
+\end{table}
+
+\subsection*{Limity návrhu}
+
+Navrhované riešenie vychádza z modelového podniku strednej veľkosti 
+a predpokladá relatívne homogénne interné procesy. 
+V prípade výrazného rastu organizácie alebo internacionalizácie 
+môže byť potrebné rozšíriť funkcionalitu systému o pokročilé integračné a bezpečnostné mechanizmy.
+
+Ekonomický model návratnosti je založený na odhadoch pracovného času 
+a nezohľadňuje všetky nepriame faktory (napr. reputačné riziko).
+
+\subsection*{Zhrnutie}
+
+Analýza prínosov a rizík ukazuje, že implementácia \gls{dms} 
+predstavuje strategicky opodstatnené rozhodnutie. 
+
+Očakávané operatívne a ekonomické prínosy prevyšujú identifikované riziká, 
+ktoré je možné primerane riadiť pomocou projektových a technických opatrení.
+
+Z pohľadu dlhodobej stability informačného prostredia podniku 
+je implementácia DMS významným krokom smerom k systematickej digitalizácii a zvýšeniu konkurencieschopnosti.
 
 \clearpage

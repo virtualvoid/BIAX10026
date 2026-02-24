@@ -1,79 +1,138 @@
 ﻿\section{Analýza súčasného stavu}
 
-\subsection*{Súčasný spôsob správy dokumentácie}
+\subsection*{Charakter spracovania dokumentácie (AS-IS stav)}
 
-V súčasnosti spoločnosť Smer HD, a.s. využíva kombináciu papierovej archivácie a základného digitálneho úložiska vo forme zdieľaných sieťových priečinkov. 
+Spoločnosť Smer HD, a.s. spracúva ročne približne 4\,000--6\,000 dokumentov rôzneho typu 
+(zmluvy, technická dokumentácia, projektové podklady, interné smernice). 
+V rámci jedného väčšieho projektu môže vzniknúť 300--800 dokumentov.
 
-Zmluvná dokumentácia je uchovávaná prevažne v tlačenej podobe v archíve administratívneho oddelenia. Technická dokumentácia vzniká digitálne (napr. \gls{cad} výkresy), 
-avšak jej evidencia je realizovaná prostredníctvom adresárovej štruktúry bez jednotných pravidiel pomenovávania alebo verzovania.
+V súčasnosti je správa dokumentácie realizovaná kombináciou papierovej archivácie 
+a digitálneho úložiska vo forme zdieľaných sieťových priečinkov bez jednotnej klasifikačnej schémy. 
+Neexistuje centrálna evidencia dokumentov ani formálne definovaný proces riadenia ich životného cyklu.
 
-Schvaľovanie dokumentov prebieha prevažne e-mailovou komunikáciou alebo osobným podpisom vytlačených dokumentov. 
-Neexistuje centralizovaný systém evidencie zmien ani automatizované workflow procesy podporené \gls{dms} riešením.
+Technická dokumentácia (napr. \gls{cad} výkresy) vzniká digitálne, avšak jej evidencia 
+je založená primárne na adresárovej štruktúre a manuálnom pomenovávaní súborov. 
+Riadené verzovanie nie je implementované – nové verzie dokumentov sú ukladané ako samostatné súbory, 
+čo zvyšuje riziko neprehľadnosti a použitia neaktuálnych podkladov.
 
-Vyhľadávanie starších dokumentov je časovo náročné a závisí od znalostí konkrétnych zamestnancov. 
-V prípade ich neprítomnosti môže dochádzať k výraznému spomaleniu procesov, čo negatívne ovplyvňuje plynulosť realizácie projektov.
+\subsection*{Procesná analýza toku dokumentov}
 
-\subsection*{Identifikované problémy}
+Na základe analýzy interných procesov možno súčasný model spracovania dokumentov zhrnúť do nasledovných krokov:
 
-Na základe analýzy aktuálneho stavu možno identifikovať nasledovné problémy:
+\begin{enumerate}
+    \item Vytvorenie dokumentu projektantom alebo administratívnym pracovníkom.
+    \item Uloženie dokumentu do lokálneho alebo zdieľaného priečinka.
+    \item Oznámenie zmeny prostredníctvom e-mailovej komunikácie.
+    \item Manuálne schvaľovanie (odpoveď e-mailom alebo fyzický podpis).
+    \item Archivácia dokumentu bez centrálneho registra verzií.
+\end{enumerate}
+
+Proces je závislý od individuálnej disciplíny zamestnancov a neobsahuje formálne kontrolné mechanizmy. 
+Informácie o stave schvaľovania nie sú systematicky evidované a spätne dohľadateľné.
+
+\subsection*{Kvantifikácia časových strát}
+
+Priemerný čas vyhľadania konkrétneho dokumentu predstavuje 10--15 minút. 
+Pri odhadovanom počte približne 500 vyhľadávaní mesačne to znamená:
+
+\[
+500 \times 10 \text{ minút} = 5\,000 \text{ minút} \approx 83 \text{ hodín mesačne}
+\]
+
+Pri horšom scenári (15 minút):
+
+\[
+500 \times 15 \text{ minút} = 7\,500 \text{ minút} \approx 125 \text{ hodín mesačne}
+\]
+
+Pri priemernej hodinovej nákladovej cene práce 18 EUR predstavuje mesačný náklad:
+
+\[
+83 \times 18 = 1\,494 \text{ EUR}
+\]
+
+až
+
+\[
+125 \times 18 = 2\,250 \text{ EUR}
+\]
+
+Ročne tak možno identifikovať potenciálnu neefektivitu v rozsahu približne 18\,000--27\,000 EUR, 
+pričom ide iba o časové straty spojené s vyhľadávaním dokumentov.
+
+\subsection*{Identifikované problémy a ich dopad}
+
+Na základe analýzy boli identifikované nasledovné systémové nedostatky:
 
 \begin{itemize}
-    \item absencia centrálneho registra dokumentov,
-    \item nejednotné pomenovávanie súborov a priečinkov,
-    \item neexistujúce systematické verzovanie dokumentov,
-    \item manuálne a neformálne schvaľovacie procesy,
-    \item obmedzená kontrola prístupových práv,
-    \item vysoká závislosť od konkrétnych pracovníkov.
+    \item \textbf{Absencia centrálneho registra dokumentov} – vedie k duplicitám a strate prehľadu.
+    \item \textbf{Nekontrolované verzovanie} – zvyšuje riziko použitia neaktuálnej dokumentácie.
+    \item \textbf{Manuálne schvaľovanie} – predlžuje projektové cykly o 1--3 dni.
+    \item \textbf{Nedostatočné riadenie prístupových práv} – predstavuje bezpečnostné riziko.
+    \item \textbf{Závislosť od konkrétnych pracovníkov} – vytvára úzke miesta (bottleneck efekt).
 \end{itemize}
 
-Tieto nedostatky vedú k zníženej efektivite práce, zvyšujú pravdepodobnosť chýb pri práci s technickou dokumentáciou a komplikujú dohľadateľnosť historických údajov.
+Okrem priamych časových strát existujú aj nepriamo kvantifikovateľné dopady, 
+ako je riziko chýb vo výrobe, reputačné škody alebo právne dôsledky v prípade sporových situácií.
 
-\subsection*{Riziká vyplývajúce zo súčasného stavu}
+\subsection*{Riziková analýza}
 
-Nedostatočne riadená správa dokumentácie môže viesť k viacerým rizikám:
+Vzhľadom na bezpečnostne citlivý charakter vyrábaných zariadení predstavujú identifikované nedostatky 
+významné prevádzkové aj právne riziko.
 
-\begin{itemize}
-    \item použitie neaktuálnej verzie technickej dokumentácie vo výrobe,
-    \item strata alebo poškodenie papierových archívov,
-    \item nemožnosť spätnej dohľadateľnosti zmien,
-    \item právne riziká pri sporoch so zákazníkmi,
-    \item problémy pri auditoch alebo bezpečnostných kontrolách.
-\end{itemize}
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{L{6.2cm} C{2.6cm} C{2.4cm} C{3.0cm}}
+\toprule
+\textbf{Riziko} & \textbf{Pravdepodobnosť} & \textbf{Dopad} & \textbf{Úroveň rizika} \\
+\midrule
+Použitie neaktuálneho výkresu & Stredná & Vysoký & Kritické \\
+Strata dokumentácie & Nízka & Vysoký & Stredné \\
+Právny spor bez dôkazov o zmene & Nízka & Vysoký & Stredné \\
+Zdržanie projektu kvôli schvaľovaniu & Vysoká & Stredný & Vysoké \\
+\bottomrule
+\end{tabularx}
+\caption{Riziková analýza súčasného stavu}
+\end{table}
 
-Vzhľadom na bezpečnostne citlivý charakter vyrábaných zariadení predstavujú uvedené riziká významnú hrozbu pre reputáciu aj ekonomickú stabilitu podniku.
+Najvyššie riziko predstavuje použitie neaktuálnej technickej dokumentácie, 
+ktoré môže mať priamy dopad na bezpečnosť a kvalitu realizovaných projektov.
 
 \subsection*{SWOT analýza súčasného stavu}
 
 Pre systematické zhodnotenie situácie bola vypracovaná SWOT analýza:
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
-\begin{tabular}{p{6cm} p{6cm}}
+\begin{tabularx}{\textwidth}{L{0.48\textwidth} L{0.48\textwidth}}
 \toprule
 \textbf{Silné stránky} & \textbf{Slabé stránky} \\
 \midrule
-Skúsený technický tím &
-Neexistencia centrálneho \gls{dms} \\
-Projektové know-how &
-Manuálne schvaľovanie dokumentov \\
-Flexibilná organizačná štruktúra &
-Nekontrolované verzovanie \\
+Skúsený technický tím & Neexistencia centrálneho \gls{dms} \\
+Projektové know-how & Manuálne schvaľovanie dokumentov \\
+Flexibilná organizačná štruktúra & Nekontrolované verzovanie \\
  & Závislosť od jednotlivcov \\
 \midrule
 \textbf{Príležitosti} & \textbf{Hrozby} \\
 \midrule
-Digitalizácia procesov &
-Strata alebo poškodenie dokumentov \\
-Zvýšenie efektivity práce &
-Použitie neaktuálnych výkresov \\
-Zlepšenie auditovateľnosti &
-Právne a bezpečnostné riziká \\
+Digitalizácia procesov & Strata alebo poškodenie dokumentov \\
+Zvýšenie efektivity práce & Použitie neaktuálnych výkresov \\
+Zlepšenie auditovateľnosti & Právne a bezpečnostné riziká \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \caption{SWOT analýza súčasného stavu správy dokumentácie}
 \end{table}
 
-Analýza poukazuje na skutočnosť, že hoci podnik disponuje silným odborným zázemím, absentuje systematická informačná podpora správy dokumentov. 
-Digitalizácia a implementácia vhodného \gls{dms} systému predstavuje prirodzený krok smerujúci k zvýšeniu efektivity, transparentnosti a zníženiu prevádzkových rizík.
+Z výsledkov SWOT analýzy vyplýva, že slabé stránky a hrozby priamo súvisia 
+s absenciou centrálne riadeného systému správy dokumentov. 
+Zároveň však silné stránky podniku, najmä odborná kompetencia tímu a flexibilita organizačnej štruktúry, 
+vytvárajú vhodné predpoklady pre úspešnú implementáciu DMS riešenia.
+
+\subsection*{Zhrnutie analýzy súčasného stavu}
+
+Súčasný model správy dokumentácie je funkčný z hľadiska základnej operatívy, 
+avšak z pohľadu efektivity, rizík a škálovateľnosti je neudržateľný. 
+Identifikované nedostatky predstavujú systematický problém, 
+ktorý si vyžaduje koncepčné riešenie v podobe implementácie centralizovaného DMS systému.
 
 \clearpage

@@ -1,143 +1,123 @@
 ﻿\section{Identifikácia požiadaviek na informačný systém}
 
-Na základe analýzy súčasného stavu boli identifikované požiadavky na implementáciu \gls{dms}, ktorý bude reflektovať špecifiká projektovo orientovaného výrobného podniku.
+Na základe analýzy súčasného stavu boli identifikované požiadavky na implementáciu \gls{dms}, 
+ktorý bude reflektovať špecifiká projektovo orientovaného výrobného podniku. 
+Požiadavky vychádzajú z identifikovaných procesných nedostatkov, rizík a ekonomických dopadov 
+popísaných v predchádzajúcej kapitole.
 
-Požiadavky možno rozdeliť do viacerých kategórií: funkčné, nefunkčné, bezpečnostné a integračné.
+Požiadavky boli rozdelené do štyroch kategórií: funkčné, nefunkčné, bezpečnostné a integračné. 
+Pre zvýšenie prehľadnosti a určenie implementačnej priority bola použitá metóda MoSCoW 
+(Must, Should, Could).
+
+\subsection*{Prehľad a priorizácia požiadaviek (MoSCoW)}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{C{1.2cm} L{9.0cm} C{2.4cm} C{2.2cm}}
+\toprule
+\textbf{ID} & \textbf{Požiadavka} & \textbf{Kategória} & \textbf{Priorita} \\
+\midrule
+F1 & Centrálna evidencia dokumentov a väzba na projekt (jednoznačná identifikácia, typ dokumentu, metadáta) & Funkčná & Must \\
+F2 & Riadené verzovanie dokumentov vrátane histórie zmien a označenia platnej verzie & Funkčná & Must \\
+F3 & Workflow schvaľovanie (kroky, úlohy, rozhodnutia, stav dokumentu) \cite{dumas} & Funkčná & Must \\
+F4 & Vyhľadávanie podľa viacerých kritérií (projekt, typ, dátum, zodpovedná osoba) & Funkčná & Should \\
+F5 & Podpora šablón a štandardizovaných typov dokumentov & Funkčná & Could \\
+\midrule
+N1 & Dostupnosť v internom sieťovom prostredí a používateľsky zrozumiteľné rozhranie & Nefunkčná & Must \\
+N2 & Spoľahlivosť, pravidelné zálohovanie a podpora obnovy dát & Nefunkčná & Must \\
+N3 & Výkon pri práci s rozsiahlymi technickými súbormi & Nefunkčná & Should \\
+\midrule
+B1 & Riadenie prístupových práv na princípe \gls{rbac} & Bezpečnostná & Must \\
+B2 & Auditná stopa operácií (kto, kedy, čo zmenil) & Bezpečnostná & Must \\
+B3 & Ochrana proti neoprávnenému zásahu a úniku údajov & Bezpečnostná & Must \\
+\midrule
+I1 & Možnosť budúcej integrácie s \gls{erp}/ekonomickým systémom & Integračná & Could \\
+I2 & API alebo exportné mechanizmy pre integráciu v rámci \gls{pis} & Integračná & Could \\
+\bottomrule
+\end{tabularx}
+\caption{Prehľad požiadaviek a ich priorizácia metódou MoSCoW}
+\end{table}
 
 \subsection*{Funkčné požiadavky}
 
-Funkčné požiadavky vyjadrujú, aké činnosti musí systém podporovať.
+Základnou požiadavkou je zavedenie centrálnej evidencie dokumentov (F1), 
+ktorá odstráni problém decentralizovaného ukladania a nejednotnej klasifikácie. 
+Každý dokument musí byť jednoznačne identifikovateľný a priradený ku konkrétnemu projektu.
 
-Systém musí umožňovať centrálne evidovanie všetkých dokumentov vznikajúcich v rámci projektu. Každý dokument musí byť jednoznačne identifikovateľný, 
-zaraditeľný k príslušnému projektu a kategorizovaný podľa typu (technická dokumentácia, zmluva, certifikát a pod.).
+Kľúčovým prvkom je riadené verzovanie (F2), ktoré zabezpečí uchovávanie histórie zmien 
+a jednoznačné označenie aktuálnej verzie dokumentu. 
+Táto požiadavka priamo reaguje na identifikované riziko použitia neaktuálnej dokumentácie.
 
-Súčasťou systému musí byť mechanizmus verzovania dokumentov, ktorý umožní sledovanie zmien a uchovávanie histórie úprav. Používateľ musí mať možnosť identifikovať aktuálnu platnú verziu dokumentu.
+Workflow mechanizmus (F3) umožní formalizovať schvaľovací proces, 
+znížiť závislosť od e-mailovej komunikácie a zabezpečiť preukázateľnú evidenciu rozhodnutí.
 
-Dôležitou funkciou je podpora schvaľovacích procesov prostredníctvom workflow mechanizmov \cite{dumas}. 
-Systém musí umožňovať definovanie schvaľovacích krokov, priraďovanie úloh konkrétnym používateľom a evidenciu rozhodnutí.
-
-Systém musí podporovať vyhľadávanie dokumentov podľa viacerých kritérií, napríklad podľa projektu, typu dokumentu, dátumu vytvorenia alebo zodpovednej osoby.
+Vyhľadávanie podľa viacerých kritérií (F4) má minimalizovať časové straty identifikované v analýze AS-IS stavu.
 
 \subsection*{Nefunkčné požiadavky}
 
-Nefunkčné požiadavky definujú kvalitatívne vlastnosti systému.
+Systém musí byť dostupný všetkým oprávneným používateľom v rámci interného prostredia (N1) 
+a poskytovať intuitívne používateľské rozhranie.
 
-Systém musí byť dostupný pre všetkých oprávnených používateľov prostredníctvom interného sieťového prostredia podniku. 
-Používateľské rozhranie musí byť intuitívne a zrozumiteľné aj pre technicky menej zdatných pracovníkov.
+Spoľahlivosť a ochrana dát (N2) predstavujú kritický faktor vzhľadom na bezpečnostnú povahu dokumentácie. 
+Systém musí podporovať pravidelné zálohovanie a obnovu dát.
 
-Dôležitou požiadavkou je spoľahlivosť systému a zabezpečenie ochrany dát proti strate. Systém musí podporovať pravidelné zálohovanie a obnovu dát.
-
-Z pohľadu výkonu musí byť systém schopný pracovať s rozsiahlymi technickými súbormi bez výrazného spomalenia práce používateľov.
+Požiadavka na výkon (N3) reflektuje prácu s rozsiahlymi technickými súbormi 
+a potrebu zachovania plynulosti práce používateľov.
 
 \subsection*{Bezpečnostné požiadavky}
 
-Vzhľadom na citlivosť technickej a zmluvnej dokumentácie je nevyhnutné zabezpečiť riadenie prístupových práv na princípe \gls{rbac}. 
-Systém musí umožňovať definovanie používateľských rolí a obmedzenie prístupu k dokumentom podľa organizačnej štruktúry.
+Riadenie prístupových práv na princípe \gls{rbac} (B1) umožní definovať roly 
+a obmedziť prístup podľa projektových tímov a organizačnej štruktúry.
 
-Každá zmena dokumentu musí byť zaznamenaná v auditnej stope, ktorá umožní spätne identifikovať autora zmeny, čas úpravy a charakter vykonanej operácie.
+Auditná stopa (B2) zabezpečí spätnú dohľadateľnosť zmien, 
+čo je významné z hľadiska interných kontrol aj potenciálnych sporových situácií.
 
-Systém musí zabezpečiť ochranu pred neoprávneným zásahom do dokumentácie a minimalizovať riziko úniku citlivých údajov.
+Ochrana pred neoprávneným zásahom (B3) zahŕňa kontrolu prístupov, 
+ochranu dát a minimalizáciu rizika úniku citlivých informácií.
 
 \subsection*{Integračné požiadavky}
 
-Hoci hlavnou oblasťou riešenia je správa dokumentov, systém by mal umožňovať budúcu integráciu s ďalšími podnikovými systémami, najmä s ekonomickým softvérom alebo \gls{erp} riešením.
+Aj keď primárnym cieľom je riešenie správy dokumentov, 
+systém musí umožniť budúcu integráciu s ekonomickým alebo \gls{erp} systémom (I1). 
+Prepojenie dokumentov s projektmi, zákazkami alebo dokladmi 
+zvýši transparentnosť riadenia podniku.
 
-Integrácia by mala umožniť prepojenie dokumentov s konkrétnymi projektmi, zákazkami alebo fakturačnými dokladmi, čím sa zvýši prehľadnosť a efektivita riadenia podniku. 
-Takáto integrácia podporí komplexné fungovanie \gls{pis} v rámci organizácie.
+Dostupnosť API alebo exportných mechanizmov (I2) umožní postupnú integráciu 
+v rámci širšieho podnikového informačného systému.
 
-\subsection*{Porovnanie možných prístupov riešenia}
+\subsection*{Zdôvodnenie voľby DMS riešenia}
 
-Pri rozhodovaní o implementácii informačného riešenia je potrebné zvážiť viaceré alternatívy. 
-Pre spoločnosť Smer HD, a.s. prichádzajú do úvahy najmä nasledovné prístupy:
+Na základe analýzy alternatív (ERP, ECM, samostatné DMS) možno konštatovať, 
+že primárnym problémom podniku je systematická správa dokumentácie, 
+nie komplexné riadenie výrobných alebo finančných procesov.
 
-\textbf{1. Implementácia komplexného ERP riešenia}
+Implementácia samostatného \gls{dms} predstavuje realistický a postupne implementovateľný krok, 
+ktorý rieši najkritickejšie identifikované problémy 
+a zároveň vytvára základ pre budúcu integráciu s ďalšími systémami.
 
-ERP systémy poskytujú integrované riadenie financií, výroby, skladového hospodárstva a ďalších procesov. 
-Rozšírené ERP riešenia často obsahujú aj modul správy dokumentov. 
+\subsection*{Ekonomické aspekty implementácie}
 
-Nevýhodou takéhoto prístupu môže byť vysoká finančná náročnosť, dlhšia implementácia a implementácia funkcionalít, ktoré podnik v súčasnosti bezprostredne nepotrebuje.
+Implementácia \gls{dms} predstavuje investičné rozhodnutie s priamym dopadom na efektivitu práce. 
+Na základe analýzy časových strát možno očakávať významnú redukciu neproduktívneho času 
+spojeného s vyhľadávaním dokumentov a manuálnym schvaľovaním.
 
-\textbf{2. Implementácia ECM systému}
-
-ECM riešenia poskytujú širší rámec správy obsahu vrátane digitálnych archívov, správy záznamov a často aj integrácie s inými podnikovými systémami. 
-Pre menší projektovo orientovaný podnik však môže byť implementácia komplexného ECM riešenia organizačne aj finančne nadmerná.
-
-\textbf{3. Implementácia samostatného DMS riešenia}
-
-Samostatný \gls{dms} predstavuje cielené riešenie zamerané na evidenciu, verzovanie a riadenie životného cyklu dokumentov. 
-Vzhľadom na identifikované problémy v oblasti správy dokumentácie predstavuje tento prístup primeraný kompromis medzi funkčnosťou, nákladmi a implementačnou náročnosťou.
-
-\subsection*{Zdôvodnenie výberu riešenia}
-
-Na základe analýzy potrieb podniku možno konštatovať, že primárnym problémom spoločnosti nie je komplexné riadenie výroby alebo financií, ale systematická správa dokumentácie.
-
-Z tohto dôvodu je implementácia \gls{dms} vhodnejším a realistickejším prvým krokom v rámci postupnej digitalizácie podniku. 
-Takýto prístup umožňuje riešiť najkritickejšiu oblasť s primeranými nákladmi a zároveň vytvára základ pre budúcu integráciu s ERP alebo inými podnikovými systémami.
-
-\subsection*{Porovnanie možných prístupov riešenia}
-
-Pri rozhodovaní o implementácii informačného riešenia je potrebné zvážiť viaceré alternatívy. 
-Pre spoločnosť Smer HD, a.s. prichádzajú do úvahy najmä nasledovné prístupy:
-
-\textbf{1. Implementácia komplexného ERP riešenia}
-
-ERP systémy poskytujú integrované riadenie financií, výroby, skladového hospodárstva a ďalších procesov. 
-Rozšírené ERP riešenia často obsahujú aj modul správy dokumentov. 
-
-Nevýhodou takéhoto prístupu môže byť vysoká finančná náročnosť, dlhšia implementácia a implementácia funkcionalít, ktoré podnik v súčasnosti bezprostredne nepotrebuje.
-
-\textbf{2. Implementácia ECM systému}
-
-ECM riešenia poskytujú širší rámec správy obsahu vrátane digitálnych archívov, správy záznamov a často aj integrácie s inými podnikovými systémami. 
-Pre menší projektovo orientovaný podnik však môže byť implementácia komplexného ECM riešenia organizačne aj finančne nadmerná.
-
-\textbf{3. Implementácia samostatného DMS riešenia}
-
-Samostatný \gls{dms} predstavuje cielené riešenie zamerané na evidenciu, verzovanie a riadenie životného cyklu dokumentov. 
-Vzhľadom na identifikované problémy v oblasti správy dokumentácie predstavuje tento prístup primeraný kompromis medzi funkčnosťou, nákladmi a implementačnou náročnosťou.
-
-\subsection*{Zdôvodnenie výberu riešenia}
-
-Na základe analýzy potrieb podniku možno konštatovať, že primárnym problémom spoločnosti nie je komplexné riadenie výroby alebo financií, ale systematická správa dokumentácie.
-
-Z tohto dôvodu je implementácia \gls{dms} vhodnejším a realistickejším prvým krokom v rámci postupnej digitalizácie podniku. 
-Takýto prístup umožňuje riešiť najkritickejšiu oblasť s primeranými nákladmi a zároveň vytvára základ pre budúcu integráciu s ERP alebo inými podnikovými systémami.
-
-\subsection*{Porovnávacia analýza alternatív}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{p{3.2cm} p{3.2cm} p{3.2cm} p{3.2cm}}
-\toprule
-\textbf{Kritérium} & \textbf{ERP riešenie} & \textbf{ECM riešenie} & \textbf{Samostatné DMS} \\
-\midrule
-Rozsah funkcionality & Veľmi široký & Široký & Zameraný na dokumenty \\
-Implementačná náročnosť & Vysoká & Stredná až vysoká & Stredná \\
-Finančná náročnosť & Vysoká & Stredná až vysoká & Primeraná \\
-Čas implementácie & Dlhší (6–12 mesiacov) & 4–8 mesiacov & 4–6 mesiacov \\
-Vhodnosť pre aktuálny stav podniku & Čiastočná & Čiastočná & Vysoká \\
-Možnosť budúcej integrácie & Vysoká & Vysoká & Vysoká \\
-\bottomrule
-\end{tabular}
-\caption{Porovnanie alternatív implementácie informačného riešenia}
-\end{table}
-
-\subsection*{Kritériá hodnotenia a výber riešenia}
-
-Pri výbere vhodného informačného riešenia boli zohľadnené viaceré hodnotiace kritériá:
+Investičné náklady zahŕňajú:
 
 \begin{itemize}
-    \item súlad s identifikovanými problémami podniku,
-    \item celkové náklady vlastníctva (Total Cost of Ownership – TCO),
-    \item implementačná náročnosť a organizačný dopad,
-    \item škálovateľnosť riešenia,
-    \item bezpečnostné mechanizmy a riadenie prístupových práv,
-    \item možnosť budúcej integrácie v rámci \gls{pis}.
+    \item softvérové licencie alebo vývoj riešenia,
+    \item infraštruktúru a zálohovanie,
+    \item migráciu existujúcej dokumentácie,
+    \item školenie používateľov.
 \end{itemize}
 
-Z hľadiska celkových nákladov vlastníctva predstavuje samostatné \gls{dms} riešenie vyvážený kompromis medzi funkcionalitou a finančnou náročnosťou. 
-Podniku umožňuje riešiť najkritickejšiu oblasť správy dokumentácie bez potreby rozsiahlej reorganizácie procesov alebo vysokých investičných nákladov.
+Očakávané prínosy zahŕňajú zvýšenie efektivity, zníženie rizík 
+a podporu transparentného riadenia projektov.
 
-Zároveň vytvára technologický základ pre budúcu integráciu s \gls{erp} alebo inými podnikovými systémami, čím podporuje postupnú a kontrolovanú digitalizáciu organizácie.
+\subsection*{Zhrnutie požiadaviek}
+
+Identifikované požiadavky predstavujú formálny základ pre návrh architektúry riešenia. 
+Priorita kategórie Must definuje minimálny rozsah funkcionality, 
+ktorý musí byť implementovaný pre odstránenie kľúčových nedostatkov súčasného stavu.
 
 \clearpage

@@ -1,27 +1,177 @@
-﻿\subsection*{Architektúra systému}
+﻿\section{Návrh riešenia}
 
-Navrhované riešenie \gls{dms} je koncipované ako viacvrstvová architektúra, ktorá oddeľuje jednotlivé logické časti systému a umožňuje ich nezávislý vývoj, údržbu a budúce rozširovanie. Architektúra je znázornená na Obrázku~\ref{fig:architecture}.
+Na základe identifikovaných požiadaviek a analýzy súčasného stavu bol navrhnutý systém správy dokumentov 
+ako samostatný modul podnikového informačného systému. 
+Návrh reflektuje prioritné požiadavky kategórie Must (F1–F3, N1–N2, B1–B3) 
+a zároveň vytvára architektonický základ pre budúce rozšírenie a integráciu (F4–F5, N3, I1–I2).
 
-\begin{figure}[h]
+\subsection*{Architektúra systému}
+
+Navrhované riešenie \gls{dms} je koncipované ako viacvrstvová architektúra, 
+ktorá oddeľuje prezentačnú, aplikačnú a perzistenčnú vrstvu. 
+Takéto členenie umožňuje jasnú separáciu zodpovedností, 
+zvyšuje udržiavateľnosť systému a podporuje jeho postupné rozširovanie.
+
+Logická architektúra je znázornená na Obrázku~\ref{fig:architecture}.
+
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.95\textwidth]{images/architecture.png}
     \caption{Logická architektúra navrhovaného systému správy dokumentov}
     \label{fig:architecture}
 \end{figure}
 
-Používateľ pristupuje k systému prostredníctvom webového rozhrania, ktoré je sprístupnené cez webový server zabezpečujúci komunikáciu prostredníctvom protokolu \gls{https}. 
+\subsubsection*{Prezentačná vrstva}
 
-Prezentačná vrstva zabezpečuje používateľské rozhranie systému a umožňuje prácu s dokumentmi, zadávanie údajov a realizáciu schvaľovacích procesov.
+Prezentačná vrstva poskytuje používateľské rozhranie dostupné prostredníctvom webového prehliadača. 
+Komunikácia je zabezpečená protokolom \gls{https}.
 
-Aplikačná vrstva implementuje podnikové pravidlá, riadenie životného cyklu dokumentov, verzovanie a kontrolu prístupových práv na princípe \gls{rbac}. 
-Táto vrstva zabezpečuje spracovanie požiadaviek používateľa a komunikáciu s dátovou vrstvou.
+Táto vrstva umožňuje:
 
-Perzistenčná vrstva slúži na uchovávanie štruktúrovaných údajov, ako sú metadáta dokumentov, informácie o projektoch, používateľoch a schvaľovacích procesoch. 
-Samotné súbory dokumentov sú ukladané do samostatného úložiska dokumentov, čím sa zabezpečuje oddelenie dátovej logiky od fyzického ukladania súborov.
+\begin{itemize}
+    \item evidenciu a vyhľadávanie dokumentov (F1, F4),
+    \item nahrávanie nových verzií dokumentov (F2),
+    \item realizáciu workflow krokov (F3),
+    \item správu metadát a väzieb na projekt.
+\end{itemize}
 
-Asynchrónne spracovanie umožňuje realizáciu časovo náročných operácií, napríklad spracovanie workflow krokov alebo generovanie notifikácií, bez blokovania používateľského rozhrania. 
-Komunikácia medzi jednotlivými časťami systému môže byť podporená mechanizmom správ (message queue), čo zvyšuje škálovateľnosť a robustnosť riešenia.
+Prezentačná vrstva neobsahuje podnikové pravidlá, 
+ale funguje ako rozhranie medzi používateľom a aplikačnou logikou. 
+Tým sa zabezpečuje lepšia testovateľnosť a možnosť budúcej výmeny technológie používateľského rozhrania.
 
-Navrhnutá architektúra poskytuje dostatočnú flexibilitu pre budúce rozšírenie systému a jeho integráciu s ďalšími podnikovými informačnými riešeniami v rámci \gls{pis}.
+\subsubsection*{Aplikačná vrstva}
+
+Aplikačná vrstva predstavuje jadro systému. 
+Implementuje podnikové pravidlá, riadi životný cyklus dokumentov a zabezpečuje:
+
+\begin{itemize}
+    \item centrálne riadenú evidenciu dokumentov (F1),
+    \item riadené verzovanie vrátane histórie zmien (F2),
+    \item workflow schvaľovanie dokumentov (F3),
+    \item kontrolu prístupových práv na princípe \gls{rbac} (B1),
+    \item generovanie auditnej stopy (B2).
+\end{itemize}
+
+Táto vrstva zabezpečuje validáciu vstupov, konzistenciu údajov 
+a kontrolu prechodov medzi stavmi dokumentu (napr. návrh – schválený – archivovaný). 
+Zároveň implementuje bezpečnostné mechanizmy a kontrolu oprávnení.
+
+Aplikačná vrstva je navrhnutá tak, aby umožňovala rozšírenie 
+o integračné rozhrania (I1, I2) bez zásahu do prezentačnej časti.
+
+\subsubsection*{Perzistenčná vrstva}
+
+Perzistenčná vrstva zabezpečuje uchovávanie štruktúrovaných údajov 
+a fyzických súborov dokumentov.
+
+Štruktúrované dáta (metadáta, používateľské účty, role, workflow stavy, auditné záznamy) 
+sú ukladané v relačnej databáze. 
+
+Samotné súbory dokumentov sú ukladané do samostatného úložiska 
+(file storage alebo objektové úložisko), čím sa dosahuje:
+
+\begin{itemize}
+    \item lepšia škálovateľnosť pri práci s veľkými technickými súbormi (N3),
+    \item jednoduchšie zálohovanie a obnova dát (N2),
+    \item oddelenie logickej a fyzickej vrstvy dát.
+\end{itemize}
+
+\subsection*{Prepojenie architektúry s identifikovanými požiadavkami}
+
+Navrhnutá architektúra priamo reflektuje identifikované požiadavky:
+
+\begin{itemize}
+    \item F1 (centrálna evidencia) je implementovaná v aplikačnej vrstve 
+    prostredníctvom jednotného registra dokumentov.
+    
+    \item F2 (verzovanie) je zabezpečené samostatnou entitou verzie dokumentu 
+    s historickou evidenciou zmien.
+    
+    \item F3 (workflow) je realizované prostredníctvom stavového modelu 
+    a definovaných prechodov medzi stavmi.
+    
+    \item B1 (RBAC) je implementované na úrovni aplikačnej logiky 
+    a kontrolované pri každej operácii.
+    
+    \item B2 (auditná stopa) je generovaná ako samostatná perzistentná entita.
+    
+    \item N2 (zálohovanie a obnova) je podporené oddelením databázovej 
+    a súborovej vrstvy.
+    
+    \item I1 a I2 (integrácia) sú umožnené návrhom aplikačnej vrstvy 
+    s potenciálom poskytovať API rozhrania.
+\end{itemize}
+
+\subsection*{Návrh dátového modelu}
+
+Kľúčové entity systému zahŕňajú:
+
+\begin{itemize}
+    \item \textbf{Projekt} – základná organizačná jednotka, ku ktorej sú dokumenty viazané.
+    \item \textbf{Dokument} – logická reprezentácia dokumentu (typ, názov, väzba na projekt).
+    \item \textbf{Verzia dokumentu} – konkrétna verzia dokumentu s časovou pečiatkou a autorom.
+    \item \textbf{Používateľ} – osoba oprávnená pristupovať do systému.
+    \item \textbf{Rola} – definícia oprávnení v rámci modelu \gls{rbac}.
+    \item \textbf{Workflow} – definícia stavov a prechodov dokumentu.
+    \item \textbf{Auditný záznam} – evidencia vykonaných operácií.
+\end{itemize}
+
+Vzťahy medzi entitami umožňujú:
+
+\begin{itemize}
+    \item väzbu dokumentov na projekty,
+    \item viacnásobné verzie jedného dokumentu,
+    \item riadenie oprávnení podľa rolí,
+    \item spätnú dohľadateľnosť zmien.
+\end{itemize}
+
+Takto navrhnutý model podporuje konzistentnosť údajov 
+a umožňuje budúce rozšírenie (napr. prepojenie dokumentu na ekonomické doklady).
+
+\subsection*{Bezpečnostné aspekty návrhu}
+
+Bezpečnostná architektúra zahŕňa:
+
+\begin{itemize}
+    \item šifrovanú komunikáciu cez \gls{https},
+    \item autentifikáciu používateľov,
+    \item autorizáciu na princípe \gls{rbac},
+    \item auditnú stopu všetkých významných operácií.
+\end{itemize}
+
+Prístupové práva sú kontrolované na úrovni aplikačnej logiky, 
+čím sa minimalizuje riziko neoprávneného zásahu (B3).
+
+\subsection*{Škálovateľnosť a budúce rozšírenie}
+
+Navrhnutá architektúra umožňuje horizontálne aj vertikálne škálovanie systému.
+
+Oddelenie vrstiev umožňuje:
+
+\begin{itemize}
+    \item rozšírenie aplikačnej vrstvy o ďalšie moduly (napr. registratúrny modul),
+    \item implementáciu REST API pre integráciu s ERP (I1),
+    \item rozšírenie o pokročilé vyhľadávanie alebo indexáciu obsahu,
+    \item integráciu s externými úložiskami alebo cloudovou infraštruktúrou.
+\end{itemize}
+
+V prípade rastu objemu dokumentácie je možné:
+
+\begin{itemize}
+    \item oddeliť databázový server,
+    \item distribuovať súborové úložisko,
+    \item zaviesť cache mechanizmy.
+\end{itemize}
+
+Architektúra tak vytvára stabilný základ pre postupnú digitálnu transformáciu podniku.
+
+\subsection*{Zhrnutie návrhu riešenia}
+
+Navrhnuté riešenie \gls{dms} predstavuje systematickú odpoveď 
+na identifikované nedostatky súčasného stavu. 
+Architektúra rešpektuje princípy modulárnosti, bezpečnosti a škálovateľnosti.
+
+Systém pokrýva prioritné funkčné a bezpečnostné požiadavky, 
+pričom zároveň vytvára predpoklady pre budúcu integráciu do širšieho \gls{pis}.
 
 \clearpage
